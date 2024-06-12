@@ -1,0 +1,15 @@
+1. Git 설치
+
+https://www.git-scm.com/downloads
+위 사이트에서 사용하는 OS에 맞는 git 설치
+
+설치 중 Select Components 에서
+
+Git bash Here , Git GUI Here 반드시 체크하고 나머진 건드리지 않고 설치
+
+설치 후 재부팅 필요
+
+2. VsCode와 Git 연동
+
+좌측 3번째 Source Control 메뉴 클릭 후 
+
