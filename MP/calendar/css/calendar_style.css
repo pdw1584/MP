@@ -1,10 +1,22 @@
+@font-face {
+  font-family: 'SUIT-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-family : 'SUIT-Regular';
+}
 /* html{
-    background-color : rgb(244, 244, 238);
+  background-color : rgb(244, 244, 238);
 } */
 
 table {
   width: 100%;
   border-collapse: collapse;
+
+  /* text-color :white; */
 }
 
 td {
@@ -17,8 +29,8 @@ td {
 } 
 
 .todoCk {
-  background-color: rgb(185, 224, 171);
-  color : white;
+  background-color: #D2E6E5;
+  color : #ffffff;
 }
 /* 이미 선택된 날짜를 한 번 더 선택하고 true 값을 주었을 때 색상을 더 진하게 하고 싶다...
 .todoAgain{
@@ -27,8 +39,13 @@ td {
 } 
 */
 .week{
-  background-color : rgb(222, 247, 247);
+  background-color : #D2E6E5;
   font-size : 25px;
+  font-weight: bold;
+}
+
+#calendar .week td {
+  height: 50px; /* 전체 셀 높이의 30%로 설정 */
   font-weight: bold;
 }
 
@@ -39,8 +56,8 @@ td {
 }
 
 td:hover{
-  background-color: lightgrey;
-  color : white;
+  background-color: #b9b9bd;
+  color : #d7d7d9;
 }
 /* 토요일과 일요일에 색상을 다르게 부여 */
 .sunday{
@@ -53,13 +70,14 @@ td:hover{
 
 #calendar-body{
   /* 날짜의 폰트 사이즈 부여 */
+  font : 'SUIT-Regular';
   font-size : 25px;
 }
 
 .lastNextMonth{
   /* 이전, 다음 달의 날짜에 배경색 부여 */
-  background-color : rgb(197, 196, 196);
-  color : ivory;
+  background-color : #f6f6f6;
+  color : #d7d7d9; 
   font-size : 20px;
 }
 
@@ -67,3 +85,8 @@ td:hover{
   background-color: #faefcc;
 }
 
+.todoList{
+  width : 700px;
+  height : 200px;
+  font-size: 30px;
+}

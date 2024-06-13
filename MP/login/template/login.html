@@ -2,49 +2,49 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인</title>
+    <title>로그인</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <!-- Firebase SDKs -->
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
-
-  <link rel="stylesheet" href="../css/login_style.css">
+    <link rel="stylesheet" href="../css/login_style.css">
 </head>
 
 <body>
+    
+    <!-- 가입 폼 시작 -->
+    <div class="container">
+        <h1>로그인</h1>
+        <form novalidate>
+            <div class="form-group">
+                <label for="email">이메일 로그인: <span>*</span></label>
+                <input type="email" class="form-control" required id="email" name="email"  pattern="@" >
+                <span class="validation error"> Please enter a valid email</span>
+                <span class="validation req"> This field is required</span>
+            </div>
+        
+            <!-- 아이디 비번 안적었을때 나오는 문구 -->
+        
+        </form>
 
-  <div class="form" id="loginform">
-    <h1> 로그인 </h1>
-    <form novalidate>
-      <p class="email">
-        <label for="email">이메일 로그인 <span>*</span>
-        </label>
-        <input class="input" required type="email" id="email" name="email" pattern="@" />
+        <div class="form-group">
+            <label for="pwd">비밀번호: <span>*</span></label>
+            <input type="password" class="form-control" required id="pwd">
+            <span class="validation req"> This field is required</span>
+        </div>
 
-        <!-- 아이디 비번 안적었을때 나오는 문구 -->
-        <span class="validation error"> Please enter a valid email</span>
-        <span class="validation req"> This field is required</span>
-      </p>
+        <button type="button" class="btn btn-default login">로그인</button>
+        <button type="button" class="btn for signup" onclick="location.href='../../login/template/register.html'">회원가입</button>
+    </div>
+    <!-- 가입 폼 끝 -->
 
-      <p class="password">
-        <label for="password">비밀번호 <span>*</span></label>
-        <input class="input" required type="password" id="password" name="password" />
-        <span class="validation req"> This field is required</span>
-      </p>
 
-      <p class="login">
-        <input type="submit" value="로그인" />
-      </p>
-      <p class="member">
-        <input type="button" value="회원가입" />
-      </p>
-    </form>
-  </div>
-  <script src="../login.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="../login.js">
+      
+    </script>
 
 
 </body>

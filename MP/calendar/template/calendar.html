@@ -5,14 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>운동 확인 캘린더</title>
-    <link rel = "stylesheet" href = "../../calendar/css/calendar_style.css" />
-    <style>
-    /* table_cal.css 파일 연결 */
-    </style>
+    <!-- <link rel = "stylesheet" href = "./table_cal.css" /> -->
+    <link rel="stylesheet" href="../css/calendar_style.css">
 </head>
 <!-- table을 이용한 calendar
-  운동 여부를 묻고 true or false에 따라 class를 추가하고 삭제한다. == 운동 후 기록 가능, 잘못 기록 시 삭제 가능 -->
+ - 운동 여부를 묻고 true or false에 따라 class를 추가하고 삭제한다. == 운동 후 기록 가능, 잘못 기록 시 삭제 가능 -->
 <body>
+
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+
+
     <div class="yearMonth">
         <h2 id="year-month-title"></h2>
     </div>
@@ -31,9 +37,13 @@
 
             <tbody id="calendar-body">
             </tbody>
-
-        
+                    
     </table>
+    <div>
+        
+        <h2>Todo List</h2>
+    </div>
+    <textarea name="todoList" class = "todoList"></textarea>
 
     <script src="../../calendar/calendar.js">
         

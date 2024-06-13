@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "SUIT-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "SUIT-Regular";
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+}
+
+.layout {
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 30%;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer; /* Added cursor pointer for better UX */
+}
+
+.layout:hover {
+  transform: scale(1.1);
+}
+
+.layout img {
+  max-width: 100%;
+  border-bottom: 1px solid #ddd;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.layout img:hover {
+  opacity: 0;
+}
+
+.layout img.secondary {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1px solid #ddd;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.layout:hover img.secondary {
+  display: block;
+  opacity: 1;
+}
+
+.layout p {
+  margin: 10px 0;
+  font-size: 16px;
+}
