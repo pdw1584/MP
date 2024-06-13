@@ -21,10 +21,11 @@ body{
 }
 
 button {
-    margin-left: 30px; /* 버튼 간격 조절 */
+    margin-left: 10px; /* 버튼 간격 조절 */
+    margin-bottom: 10px;
 }
 
 button {
-    margin-top: 10px; /* 버튼 위에 간격 추가 */
+    margin-top: 1px; /* 버튼 위에 간격 추가 */
     align-items: right;
 }

@@ -1,33 +1,43 @@
-<!-- 캘린더 페이지 -->
-<!-- 
-    메모기능 추가된 캘린더입니다 
--->
-
-
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
-    <meta charset='utf-8' />
-    <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
-    <meta name="viewport"
-        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <!-- jquery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- fullcalendar CDN -->
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
-    <!-- fullcalendar 언어 CDN -->
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운동 확인 캘린더</title>
+    <link rel = "stylesheet" href = "../../calendar/css/calendar_style.css" />
+    <style>
+    /* table_cal.css 파일 연결 */
+    </style>
 </head>
-
-<body style="padding:30px;">
-    <!-- calendar 태그 -->
-    <div id='calendar-container'>
-        <div id='calendar'></div>
+<!-- table을 이용한 calendar
+  운동 여부를 묻고 true or false에 따라 class를 추가하고 삭제한다. == 운동 후 기록 가능, 잘못 기록 시 삭제 가능 -->
+<body>
+    <div class="yearMonth">
+        <h2 id="year-month-title"></h2>
     </div>
-    
-    <script src="../../calendar/calendar.js"></script>
+    <table id="calendar">
+        <div class = "day">
+            <tr class="week">
+                <td class = 'sunday'>일</td>
+                <td>월</td>
+                <td>화</td>
+                <td>수</td>
+                <td>목</td>
+                <td>금</td>
+                <td class = 'saturday'>토</td>
+            </tr>
+        </div>
+
+            <tbody id="calendar-body">
+            </tbody>
+
+        
+    </table>
+
+    <script src="../../calendar/calendar.js">
+        
+    </script>
 </body>
 
 </html>

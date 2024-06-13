@@ -1,0 +1,130 @@
+/* 로그인창 스타일! */
+
+
+body {
+    background: white;
+    font-family: 'Raleway', sans-serif;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.form {
+    background: #fff;
+    border: 1px solid #D9D9D9;
+    color: rgb(99, 99, 99);
+    width: 300px;
+    border-radius: 4px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    h1 {
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 1.5em;
+        text-align: center;
+        margin: 0;
+        padding: 10px 0px;
+        border-bottom: 1px solid ;
+    }
+}
+
+form p {
+    position: relative;
+    margin: 25px 0 10px 0 ;
+    position: relative;
+}
+
+
+p.remember {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid;
+}
+.email label,
+.password label, 
+.input{
+  display: block;
+  width: 100%;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+}
+
+
+
+
+/* 로그인 회원가입 버튼 스타일!*/
+[type="submit"] {
+    display: block;
+    font-weight: bold;
+    border-radius: 2px;
+    box-shadow: 5px 5px 0 0,
+      inset 4px 4px 0 0 white;
+    border: 2px solid; 
+    border-radius: 3px;
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+    transition: background .3s;
+    &:hover {
+        background: lightcyan;
+    }
+}
+[type="button"] {
+    display: block;
+    font-weight: bold;
+    border-radius: 2px;
+    box-shadow: 5px 5px 0 0,
+      inset 4px 4px 0 0 white;
+    border: 2px solid; 
+    border-radius: 3px;
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+    transition: background .3s;
+    &:hover {
+        background: lightcyan;
+    }
+}
+
+
+/* 틀렸을때 나오는 문구!!*/
+
+.invalid {
+    border-color: rgb(183, 0, 76);
+}
+
+.required {
+    border-color: #B54300;
+}
+
+.validation {
+  display: block;
+  font-size: .8em;  
+  padding-top: .5em;
+  position: absolute;
+  right:0;
+  opacity: 0;
+  transition: opacity 1s ;
+}
+
+.validation.req {
+  color: #B54300;
+}
+
+.validation.error {  
+  color: rgb(183, 0, 76); 
+}
+
+
+.invalid:not(.required)  ~ .validation.error {
+  opacity: 1;
+  transform: scale(1);   
+}
+
+.required  ~ .validation.req {
+  opacity: 1;
+  transform: scale(1);   
+}

@@ -1,47 +1,86 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const yearMonthTitle = document.getElementById('year-month-title');
+    const calendarBody = document.getElementById('calendar-body');
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
 
-(function () {
-    $(function () {
-        // calendar element 취득
-        var calendarEl = $('#calendar')[0];
-        // full-calendar 생성하기
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            height: '700px', // calendar 높이 설정
-            expandRows: true, // 화면에 맞게 높이 재설정
-            slotMinTime: '08:00', // Day 캘린더에서 시작 시간
-            slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
-            // 해더에 표시할 툴바
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-            },
-            initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
-            navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
-            editable: true, // 수정 가능?
-            selectable: true, // 달력 일자 클릭, 드래그 설정가능
-            dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-            locale: 'ko', // 한국어 설정
-            eventAdd: function (obj) { // 이벤트가 추가되면 발생하는 이벤트
-                console.log(obj);
-            },
-            eventChange: function (obj) { // 이벤트가 수정되면 발생하는 이벤트
-                console.log(obj);
-            },
-            eventRemove: function (obj) { // 이벤트가 삭제되면 발생하는 이벤트
-                console.log(obj);
-            },
-            select: function (arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-                var title = confirm('운동 잘 하셨나요');
-                if (title) {
-                    calendar.addEvent({
-                        title: title,
-                        allDay: arg.allDay
-                    })
+    // 년 월 타이틀 설정
+    yearMonthTitle.textContent = `${currentYear}년 ${currentMonth + 1}월`;
+
+    function generateCalendar(year, month) {
+        calendarBody.innerHTML = '';
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDate = new Date(year, month + 1, 0).getDate();
+        const prevLastDate = new Date(year, month, 0).getDate();
+        let dateNum = 1;
+        let nextMonthDateNum = 1;
+        let createdRow = document.createElement('tr');
+
+        // 이전 달 날짜 표시
+        // 이전 달과 다음 달 날짜를 나타내는 td에 background-color 스타일을 입혀주고싶다...
+        for (let i = 0; i < firstDay; i++) {
+            const cell = document.createElement('td');
+            cell.textContent = prevLastDate - firstDay + i + 1;
+            cell.classList.add('lastNextMonth');
+            createdRow.appendChild(cell);                    
+        }
+
+        // 현재 달 날짜 표시
+        for (let i = firstDay; i < 7; i++) {
+            const cell = document.createElement('td');
+            cell.textContent = dateNum;
+            cell.setAttribute('data-date', `${year}-${month + 1}-${dateNum < 10 ? '0' + dateNum : dateNum}`);
+            createdRow.appendChild(cell);
+            dateNum++;
+        }
+        calendarBody.appendChild(createdRow);
+
+        // 나머지 주 날짜 표시
+        while (dateNum <= lastDate) {
+            createdRow = document.createElement('tr');
+            for (let i = 0; i < 7; i++) {
+                if (dateNum > lastDate) {
+                    // 다음 달 날짜 표시
+                    const cell = document.createElement('td');
+                    cell.textContent = nextMonthDateNum;
+                    createdRow.appendChild(cell);
+                    cell.classList.add('lastNextMonth');
+                    nextMonthDateNum++;
+                } else {
+                    const cell = document.createElement('td');
+                    cell.textContent = dateNum;
+                    cell.setAttribute('data-date', `${year}-${month + 1}-${dateNum < 10 ? '0' + dateNum : dateNum}`);
+                    createdRow.appendChild(cell);
+                    dateNum++;
                 }
-                calendar.unselect();
             }
-        });
-        // 캘린더 랜더링
-        calendar.render();
+            calendarBody.appendChild(createdRow);
+            
+        }
+    }
+
+    generateCalendar(currentYear, currentMonth);
+
+    // 셀 클릭 이벤트 추가
+    calendarBody.addEventListener('click', function (event) {
+        const cell = event.target;
+        const date = cell.getAttribute('data-date');
+        if (!date) return;
+
+        const didWorkout = confirm(`${date}일에 운동을 하셨나요?`);
+        // 운동 여부를 물어보고 true일 때에 class 추가, false일 때에 class를 삭제한다.
+        // 이미 부여된 class 삭제 가능 == 잘못 체크한 날짜 다시 설정 가능
+        if (didWorkout) {
+            cell.classList.add('todoCk');
+                }
+                // 이미 색칠된 날짜에 한 번 더 true값을 주었을 때 색상이 더 진해지게 만들고 싶다...
+                // else if(cell.classList.contains('todoCk')){
+                //     cell.classList.remove('todoCk');
+                //     cell.classList.add('todoAgain');
+                // }
+        else{
+                cell.classList.remove('todoCk');
+            }
     });
-})();
+});
