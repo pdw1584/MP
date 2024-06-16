@@ -1,81 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-</head>
+    <!-- <button class="btn"></button> -->
+    <link rel="stylesheet" href="../css/maPage_style.css">
  
+    <!-- 파이어베이스 관련 서비스 추가 -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+</head>
+
+
+
 <body>
 
+    <div class="box" align="center">
+        <form action="#" name="frm">
+            <table id="updateForm">
+                <tr>
+                    <th colspan="2">
+                        <h2>내 정보</h2>
+                    </th>
+                </tr>
+                <tr>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td><input type="text" name="userId" readonly></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" name="userPW"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호 확인</td>
+                    <td><input type="password" name="userNewPW"></td>
+                </tr>
+                <tr>
+                    <td>성별</td>
+                    <td><input type="text" name="userGender" readonly></td>
+                </tr>
+                <tr>
+                    <td>키</td>
+                    <td><input type="text" name="userHeight"></td>
+                </tr>
+                <tr>
+                    <td>몸무게</td>
+                    <td><input type="text" name="userWeight"></td>
+                </tr>
+                <tr>
+                    <td>생년월일</td>
+                    <td><input type="text" name="userBirth" readonly></td>
+                </tr>
+            </table>
+        </form>
 
-    <div align="center">
+    <br>
 
-    <table id="updateForm">
-        <tr>
-            <th colspan="2"><h2>내 정보</h2></th>
-        </tr>
-        <tr><th></th></tr>
-        <tr>
-            <td>ID</td>
-            <td>${user.usesrId()}</td>
-        </tr>
-        <tr>
-            <td>비밀번호</td>
-            <td><input type="password" name="userPW" value="${.pw()}"></td>
-        </tr>
-        <tr>
-            <td>비밀번호 확인</td>
-            <td><input type="password" name="userNewPW" value="${.Newpw1()}"></td>
-        </tr>
-        <tr>
-            <td>성별</td>
-            <td><input type="text" name="height" value="${.usergender()}"></td>
-        </tr>
-        <tr>
-            <td>키</td>
-            <td><input type="text" name="height" value="${.userHeight()}"></td>
-        </tr>
-        <tr>
-            <td>몸무게</td>
-            <td><input type="text" name="weight" value="${.userWeight()}"></td>
-        </tr>
-        <tr>
-            <td>BMI</td>
-            <td><input type="text" name="BMI" value="${.userBMI()}"></td>
-        </tr>
-    </table>
-    </div>
-<br>
-        <div align="center">  
-            
-            <!-- <input type="submit" value="수정" class="btn" onclick="updateInfoConfirm();">
-            <input type="reset" value="취소" class="btn" onclick="javascript:window.location='main.jsp'">
-            <input type="submit" value="탈퇴" class="btn" onclick="updateInfoConfirm();"> -->
-            <button id="modify">수정</button>
-            <button id="withdrawButton">탈퇴</button>
+            <button type="submit" id="upBtn">수정</button><br>
+            <button type="submit" id="delBtn">탈퇴</button>
 
-            
-            <script src="../../myPage/maPage.js"></script>
-
-        </div>
     </div>
 
-<!--   
-        let btn1 = document.querySelector("modify")
-        btn1.addEventListener("click", ()=>{
-            alert("수정하시겠습니까?")
-        });
-        
-        let btn2 = document.querySelector()
-        btn1.addEventListener("click", ()=>{
-            alert("탈퇴하시겠습니까?")
-        }) -->
-    </form>
-    </form>
+    <script>
+
 
     </script>
+    <script src="../maPage.js"></script>
 
 </body>
+
 </html>

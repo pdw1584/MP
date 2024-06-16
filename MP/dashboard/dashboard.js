@@ -1,15 +1,3 @@
-// 가상의 로그인 상태를 나타내는 변수
-let isLoggedIn = false;
-
-// 가상의 로그인된 사용자 데이터
-const userData = {
-    weight: 70, // 예시 값
-    height: 170, // 예시 값
-    gender: 'male', // 예시 값
-    age: 30, // 예시 값
-    activityLevel: 'sedentary' // 예시 값
-};
-
 // BMI 계산 함수
 function calculateBMI(weight, height) {
     return weight / ((height / 100) ** 2);
@@ -21,7 +9,7 @@ function calculateBMR(gender, weight, height, age) {
     if (gender === 'male') {
         bmr = 66.47 + (13.75 * weight) + (5.003 * height) - (6.755 * age);
     } else if (gender === 'female') {
-        bmr = 655.1 + (9.563 * weight) + (1.850 * height) - (4.676 * age);
+        bmr = 655.1 + (9.563 * weight) + (1.85 * height) - (4.676 * age);
     }
     return bmr;
 }
@@ -52,74 +40,45 @@ function calculateDailyCalories(bmr, activityLevel) {
     return calories;
 }
 
-// 권장 운동량 계산 함수
-function calculateActivityLevel(activityLevel) {
-    let recommendedActivity = '';
-    switch (activityLevel) {
-        case '매우 약간':
-            recommendedActivity = '주로 앉아서 활동하는 경우';
-            break;
-        case '약간':
-            recommendedActivity = '가벼운 운동 (예: 걷기)';
-            break;
-        case '보통':
-            recommendedActivity = '적당한 운동 (예: 조깅)';
-            break;
-        case '좋음':
-            recommendedActivity = '활발한 운동 (예: 수영, 자전거 타기)';
-            break;
-        case '매우 좋음':
-            recommendedActivity = '매우 활발한 운동 (예: 스포츠)';
-            break;
-        default:
-            recommendedActivity = '보통 활동 수준';
-            break;
-    }
-    return recommendedActivity;
-}
-
-// 원 요소
-const circle1 = document.getElementById('circle1');
-const circle2 = document.getElementById('circle2');
-const circle3 = document.getElementById('circle3');
-
-// 마우스를 원 위에 올렸을 때 이벤트
-circle1.addEventListener('mouseenter', function() {
-    if (isLoggedIn) {
-        const bmi = calculateBMI(userData.weight, userData.height);
-        circle1.textContent = `BMI: ${bmi.toFixed(2)}`;
-    } else {
-        circle1.textContent = '로그인해주세요';
+// 마우스를 올렸을 때 계산 함수 호출 및 결과를 원 안에 표시
+document.getElementById('bmiCircle').addEventListener('mouseover', function() {
+    let weight = parseFloat(prompt('체중(kg)을 입력하세요:'));
+    let height = parseFloat(prompt('키(cm)를 입력하세요:'));
+    if (!isNaN(weight) && !isNaN(height)) {
+        let bmi = calculateBMI(weight, height);
+        document.getElementById('bmiCircle').innerText = `BMI: ${bmi.toFixed(2)}`;
     }
 });
 
-circle1.addEventListener('mouseleave', function() {
-    circle1.textContent = 'bmi';
-});
-
-circle2.addEventListener('mouseenter', function() {
-    if (isLoggedIn) {
-        const bmr = calculateBMR(userData.gender, userData.weight, userData.height, userData.age);
-        const dailyCalories = calculateDailyCalories(bmr, userData.activityLevel);
-        circle2.textContent = `일일 권장 칼로리: ${dailyCalories.toFixed(2)} kcal`;
-    } else {
-        circle2.textContent = '로그인해주세요';
+document.getElementById('bmrCircle').addEventListener('mouseover', function() {
+    let gender = prompt('성별을 입력하세요 (male 또는 female):');
+    let weight = parseFloat(prompt('체중(kg)을 입력하세요:'));
+    let height = parseFloat(prompt('키(cm)를 입력하세요:'));
+    let age = parseInt(prompt('나이를 입력하세요:'));
+    if (gender && !isNaN(weight) && !isNaN(height) && !isNaN(age)) {
+        let bmr = calculateBMR(gender, weight, height, age);
+        document.getElementById('bmrCircle').innerText = `BMR: ${bmr.toFixed(2)} 칼로리`;
     }
 });
 
-circle2.addEventListener('mouseleave', function() {
-    circle2.textContent = '일일 권장 칼로리';
-});
-
-circle3.addEventListener('mouseenter', function() {
-    if (isLoggedIn) {
-        const recommendedActivity = calculateActivityLevel(userData.activityLevel);
-        circle3.textContent = `권장 운동량: ${recommendedActivity}`;
-    } else {
-        circle3.textContent = '로그인해주세요';
+document.getElementById('caloriesCircle').addEventListener('mouseover', function() {
+    let bmr = parseFloat(prompt('일일 기초 대사량(BMR)을 입력하세요 (칼로리):'));
+    let activityLevel = prompt('활동 수준을 입력하세요 (sedentary, lightly_active, moderately_active, very_active, extra_active):');
+    if (!isNaN(bmr) && activityLevel) {
+        let calories = calculateDailyCalories(bmr, activityLevel);
+        document.getElementById('caloriesCircle').innerText = `일일 권장 칼로리 섭취량: ${calories.toFixed(2)} 칼로리`;
     }
 });
 
-circle3.addEventListener('mouseleave', function() {
-    circle3.textContent = '권장 운동량';
+// usageDays 요소에 대한 마우스 이벤트 처리
+const usageDaysElement = document.getElementById('usageDays');
+
+// 마우스를 올렸을 때
+usageDaysElement.addEventListener('mouseenter', function() {
+    this.innerText = '지금까지 1일 함께 하셨습니다.';
+});
+
+// 마우스가 벗어났을 때
+usageDaysElement.addEventListener('mouseleave', function() {
+    this.innerText = '지금까지 함께 한 날';
 });

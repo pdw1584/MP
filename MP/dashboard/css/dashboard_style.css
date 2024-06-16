@@ -74,8 +74,8 @@ body {
 }
 
 .rectangle {
-    width: 200px;
-    height: 100px;
+    width: 480px;
+    height: 450px;
     background-color: lightgreen;
     display: flex;
     justify-content: center;
