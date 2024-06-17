@@ -19,7 +19,7 @@
             headerToolbar: {
                 left: 'prev,next',
                 center: 'title',
-                right: ''
+                right: 'dayGridMonth'
             },
             initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
             initialDate: currentDate, // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
@@ -29,30 +29,39 @@
             dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
             locale: 'ko', // 한국어 설정
             eventAdd: function (obj) { // 이벤트가 추가되면 발생하는 이벤트
-                console.log("obj",obj);
+                console.log("obj", obj);
             },
-            select: (arg) =>{
+            select: (arg) => {
                 const startDay = arg.startStr;
-                const ck = true;
-                joinUserData(startDay, ck);
-                location.href = location.href;
+                let ck;
+                ckUserData(startDay)
+                    .then((data) => {
+                        updateTodoFalse(startDay);
+                        ck = confirm("잔디뽑기");
+                    }).catch((error) => {
+                        ck = confirm("잔디심기");
+                        joinUserData(startDay, ck);
+                    })
+
+                location.replace(location.href);
                 calendar.unselect();
             }
         });
+
         // 캘린더 랜더링
         calendar.render();
-       
+
         readUserData()
             .then((data) => {
-                // console.log('Data:', data);
+                console.log('Data:', data);
                 const keys = Object.keys(data);
                 const val = document.querySelector(".fc-scrollgrid-sync-table > tbody").childNodes;
-                
-                for(let i = 0; i < val.length; i++){
+                console.log(val)
+                for (let i = 0; i < val.length; i++) {
                     var n = val[i].querySelectorAll("td");
-                    for(let j = 0; j < n.length; j++){
-                        if(keys.includes(n[j].dataset.date)){
-                            n[j].classList.add('todoCk');
+                    for (let j = 0; j < n.length; j++) {
+                        if (keys.includes(n[j].dataset.date)) {
+                            n[j].classList.toggle('todoCk');
                         }
                     }
                 }

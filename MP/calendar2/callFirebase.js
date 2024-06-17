@@ -1,12 +1,12 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyCce5qxVzEgxE0-vFstb33ZtRsHS-c9T0c",
-    authDomain: "poroject-sm.firebaseapp.com",
-    databaseURL: "https://poroject-sm-default-rtdb.firebaseio.com",
-    projectId: "poroject-sm",
-    storageBucket: "poroject-sm.appspot.com",
-    messagingSenderId: "26224697760",
-    appId: "1:26224697760:web:61f91e2e1d589f7f2544c5",
-    measurementId: "G-ZQWZRMTZ3H"
+    apiKey: "AIzaSyDY_rShHJYXanLrhjgpyee5jzfyrctIwok",
+    authDomain: "mini-project-ce8f4.firebaseapp.com",
+    databaseURL: "https://mini-project-ce8f4-default-rtdb.firebaseio.com",
+    projectId: "mini-project-ce8f4",
+    storageBucket: "mini-project-ce8f4.appspot.com",
+    messagingSenderId: "267780174541",
+    appId: "1:267780174541:web:9bce134f9caa99db636f84",
+    measurementId: "G-FXC0X6HCRP"
 };
 
 // 파이어베이스 앱 초기화
@@ -16,29 +16,29 @@ const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 function joinUserData(toDayDate, ck) {
-    database.ref("calTodo/"+toDayDate).set({
-        ck : ck
+    database.ref("calTodo/" + toDayDate).set({
+        ck: ck
     });
 }
 
-// async function readUserData (){
-//     await database.ref("calTodo/").on('value',(snapshot)=>{
-//         // 실시간 데이터베이스 값 접근
-//         const data = snapshot.val();
-//         const keys = Object.keys(data);
-//         const val = document.querySelector(".fc-scrollgrid-sync-table > tbody").childNodes;
-//         // 3번이 첫번째줄
-//         for(let i = 0; i < val.length; i++){
-//             var n = val[i].querySelectorAll("td");
-//             for(let j = 0; j < n.length; j++){
-//                 if(keys.includes(n[j].dataset.date)){
-                    
-//                 }
-//             }
-//         }
-        
-//     })
-// }
+function updateTodoFalse(todoDate) {
+    database.ref("calTodo/" + todoDate).remove();
+}
+
+const ckUserData = (toDayDate) => {
+    return new Promise((resolve, reject) => {
+        database.ref("calTodo/" + toDayDate).on('value', (snapshot) => {
+            let data = snapshot.val();
+            if (data) {
+                resolve(data);
+            } else {
+                reject(false);
+            }
+        })
+    })
+
+}
+
 const readUserData = () => {
     // readUserData라는 이름의 함수를 정의
     return new Promise((resolve, reject) => {

@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "SUIT-Regular";
+}
+
 /* body 스타일 */
 html,
 body {
@@ -12,12 +23,31 @@ body {
     padding-left: 1em;
     padding-right: 1em;
 }
-.fc-day-sun{
-    background-color: red;
+
+.fc-day-sun {
+    color: red;
 }
-.fc-day-sat{
-    background-color: blue;
+
+.fc-day-sat {
+    color: blue;
 }
-.todoCk{
-    background-color: yellow;
+
+.fc-col-header-cell {
+    background-color: gray;
+}
+
+.fc-daygrid-day-frame:hover {
+    background-color: #109972;
+}
+
+.todoCk {
+    background-color: #87D5AA;
+}
+
+.fc-dayGridMonth-button {
+    width: 100px;
+}
+
+.dayBtn {
+    position: absolute;
 }
