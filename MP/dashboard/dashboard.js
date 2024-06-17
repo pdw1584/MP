@@ -50,25 +50,48 @@ document.getElementById('bmiCircle').addEventListener('mouseover', function() {
     }
 });
 
+// 마지막 원의 id를 exerciseCircle로 변경하여 해당 원을 가리키도록 함
+document.getElementById('exerciseCircle').addEventListener('mouseover', function() {
+    let activityLevel = prompt('활동 수준을 입력하세요 (매우 약간, 약간, 보통, 좋음, 매우 좋음):');
+    
+    if (activityLevel) {
+        let recommendedExercise = '';
+        switch (activityLevel) {
+            case '매우 약간':
+                recommendedExercise = '가벼운 산책 30분';
+                break;
+            case '약간':
+                recommendedExercise = '조깅 또는 자전거 타기 60분';
+                break;
+            case '보통':
+                recommendedExercise = '수영 또는 유산소 운동 60분';
+                break;
+            case '좋음':
+                recommendedExercise = '인터벌 트레이닝 또는 농구 60분';
+                break;
+            case '매우 좋음':
+                recommendedExercise = '농구, 축구, 러닝, 하이킹 90분';
+                break;
+            default:
+                recommendedExercise = '적당한 운동을 권장합니다';
+                break;
+        }
+        
+        document.getElementById('exerciseCircle').innerText = `추천 운동: ${recommendedExercise}`;
+    }
+});
 document.getElementById('bmrCircle').addEventListener('mouseover', function() {
     let gender = prompt('성별을 입력하세요 (male 또는 female):');
     let weight = parseFloat(prompt('체중(kg)을 입력하세요:'));
     let height = parseFloat(prompt('키(cm)를 입력하세요:'));
     let age = parseInt(prompt('나이를 입력하세요:'));
+
     if (gender && !isNaN(weight) && !isNaN(height) && !isNaN(age)) {
         let bmr = calculateBMR(gender, weight, height, age);
         document.getElementById('bmrCircle').innerText = `BMR: ${bmr.toFixed(2)} 칼로리`;
     }
 });
 
-document.getElementById('caloriesCircle').addEventListener('mouseover', function() {
-    let bmr = parseFloat(prompt('일일 기초 대사량(BMR)을 입력하세요 (칼로리):'));
-    let activityLevel = prompt('활동 수준을 입력하세요 (sedentary, lightly_active, moderately_active, very_active, extra_active):');
-    if (!isNaN(bmr) && activityLevel) {
-        let calories = calculateDailyCalories(bmr, activityLevel);
-        document.getElementById('caloriesCircle').innerText = `일일 권장 칼로리 섭취량: ${calories.toFixed(2)} 칼로리`;
-    }
-});
 
 // usageDays 요소에 대한 마우스 이벤트 처리
 const usageDaysElement = document.getElementById('usageDays');
